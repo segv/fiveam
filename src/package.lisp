@@ -80,6 +80,7 @@
    #:*debug-on-failure*
    #:*verbose-failures*
    #:results-status
+   #:*print-names*
    ;; introspection
    #:list-all-suites))
 

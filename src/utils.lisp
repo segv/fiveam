@@ -72,7 +72,10 @@ current list of values."
                  (acond2 ,@others)))))))
 
 (defun varsymp (x)
-  (and (symbolp x) (eq (aref (symbol-name x) 0) #\?)))
+  (and (symbolp x)
+       (let ((name (symbol-name x)))
+         (and (>= (length name) 2)
+              (char= (char name 0) #\?)))))
 
 (defun binding (x binds)
   (labels ((recbind (x binds)

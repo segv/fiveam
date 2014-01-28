@@ -11,6 +11,8 @@
 ;;;; collection of checks which can be run and a test suite is a named
 ;;;; collection of tests and test suites.
 
+(declaim (special *suite*))
+
 (defvar *test*
   (make-hash-table :test 'eql)
   "Lookup table mapping test (and test suite) names to objects.")
@@ -36,8 +38,7 @@ named KEY in the *TEST* hash table."
   (remhash key *test*))
 
 (defun test-names ()
-  (loop for test being the hash-keys of *test*
-        collect test))
+  (hash-table-keys *test*))
 
 (defmacro test (name &body body)
   "Alias for DEF-TEST."
